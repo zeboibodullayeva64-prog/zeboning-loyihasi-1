@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b5cff">
+  <meta name="description" content="Zeboning shaxsiy portfolio sayti.">
+  <title>Zebo | Portfolio</title>
+  <style>
+    :root {
+      --blue: #1769ff;
+      --blue-dark: #0c45b8;
+      --ink: #14213d;
+      --muted: #66738a;
+      --pale: #eef5ff;
+      --white: #fff;
+      --line: #e3ebf7;
+      --shadow: 0 18px 55px rgba(28, 76, 150, .12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink); background: #fbfdff; line-height: 1.6; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, calc(100% - 40px)); margin: auto; }
+    .top-glow {
+      position: absolute; z-index: -1; top: -230px; right: -150px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(23,105,255,.16), transparent 68%);
+      pointer-events: none;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px);
+      background: rgba(251,253,255,.82); border-bottom: 1px solid rgba(227,235,247,.8);
+    }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-size: 1.35rem; font-weight: 850; letter-spacing: -.7px; color: var(--blue); }
+    .logo span { color: var(--ink); }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #53627a; font-size: .94rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--blue); }
+    .menu-btn { display: none; border: 0; background: var(--pale); color: var(--blue); border-radius: 12px; padding: 9px 12px; font-size: 1.2rem; cursor: pointer; }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 55px; padding: 80px 0 100px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--blue); background: var(--pale); border: 1px solid #dce9ff; border-radius: 999px; padding: 8px 14px; font-size: .85rem; font-weight: 700; }
+    .dot { width: 8px; height: 8px; background: #21c78a; border-radius: 50%; box-shadow: 0 0 0 5px rgba(33,199,138,.12); }
+    h1 { font-size: clamp(3.2rem, 7vw, 5.8rem); line-height: .99; letter-spacing: -5px; margin: 25px 0 22px; }
+    h1 span { color: var(--blue); }
+    .hero p { max-width: 570px; color: var(--muted); font-size: 1.12rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 21px; border-radius: 13px; font-weight: 750; transition: .25s ease; }
+    .btn-primary { color: white; background: var(--blue); box-shadow: 0 10px 25px rgba(23,105,255,.23); }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(23,105,255,.3); }
+    .btn-light { background: white; border: 1px solid var(--line); color: var(--ink); }
+    .btn-light:hover { border-color: #a9c8ff; transform: translateY(-3px); }
+    .hero-art { position: relative; display: grid; place-items: center; min-height: 390px; }
+    .orbit { position: absolute; width: 340px; height: 340px; border: 1px dashed #b8d1ff; border-radius: 50%; animation: spin 28s linear infinite; }
+    .orbit:before, .orbit:after { content: ""; position: absolute; width: 15px; height: 15px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 8px rgba(23,105,255,.1); }
+    .orbit:before { top: 43px; left: 42px; } .orbit:after { bottom: 35px; right: 32px; background: #7c5cff; }
+    .profile-card { width: min(310px, 85%); aspect-ratio: 4/4.5; border-radius: 34px; background: linear-gradient(145deg,#eaf2ff,#cfe1ff); display: grid; place-items: center; box-shadow: var(--shadow); position: relative; overflow: hidden; transform: rotate(3deg); }
+    .profile-card:before { content: ""; position: absolute; width: 260px; height: 260px; background: rgba(255,255,255,.48); border-radius: 50%; top: -100px; right: -80px; }
+    .avatar { width: 155px; height: 155px; border-radius: 50%; background: linear-gradient(135deg,#fff,#dceaff); display: grid; place-items: center; color: var(--blue); font-size: 4.2rem; font-weight: 900; box-shadow: 0 18px 35px rgba(30,80,160,.16); z-index: 1; }
+    .card-label { position: absolute; bottom: 28px; background: rgba(255,255,255,.82); backdrop-filter: blur(10px); padding: 11px 18px; border-radius: 14px; font-weight: 800; color: var(--blue-dark); z-index: 1; }
+    .float-tag { position: absolute; background: white; padding: 12px 16px; border-radius: 14px; box-shadow: var(--shadow); font-weight: 750; color: #43516a; animation: float 4s ease-in-out infinite; }
+    .tag-one { top: 45px; right: 0; } .tag-two { bottom: 50px; left: 0; animation-delay: -2s; }
+    section { padding: 88px 0; }
+    .section-head { max-width: 620px; margin-bottom: 38px; }
+    .kicker { color: var(--blue); font-size: .82rem; font-weight: 850; text-transform: uppercase; letter-spacing: 1.7px; }
+    h2 { font-size: clamp(2rem,4vw,3rem); letter-spacing: -1.7px; line-height: 1.12; margin-top: 9px; }
+    .section-head p { color: var(--muted); margin-top: 13px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel { padding: 30px; background: white; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 8px 28px rgba(28,76,150,.045); }
+    .panel p { color: var(--muted); }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fact { background: var(--pale); padding: 18px; border-radius: 16px; }
+    .fact strong { display: block; font-size: 1.35rem; color: var(--blue); }
+    .fact span { color: var(--muted); font-size: .9rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill { padding: 11px 16px; border: 1px solid #dce8fb; background: white; color: #40516d; border-radius: 12px; font-weight: 700; transition: .2s; }
+    .skill:hover { color: var(--blue); border-color: #a9c8ff; transform: translateY(-3px); }
+    .projects { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .project { background: white; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; transition: .3s; }
+    .project:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .project-cover { height: 175px; display: grid; place-items: center; font-size: 3rem; color: white; background: linear-gradient(135deg,#1769ff,#7c5cff); }
+    .project:nth-child(2) .project-cover { background: linear-gradient(135deg,#11a9b8,#1769ff); }
+    .project:nth-child(3) .project-cover { background: linear-gradient(135deg,#745bff,#b66dff); }
+    .project-body { padding: 22px; }
+    .project-body h3 { margin-bottom: 7px; }
+    .project-body p { color: var(--muted); font-size: .94rem; }
+    .contact-box { background: linear-gradient(125deg,#0c4bc2,#287cff); color: white; padding: 48px; border-radius: 28px; display: flex; justify-content: space-between; align-items: center; gap: 25px; box-shadow: 0 22px 50px rgba(23,105,255,.2); }
+    .contact-box h2 { margin: 0; max-width: 560px; }
+    .contact-box p { color: #d9e7ff; margin-top: 10px; }
+    .contact-box .btn { background: white; color: var(--blue-dark); white-space: nowrap; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 65px; gap: 25px; }
+      .hero p { margin: auto; } .actions { justify-content: center; }
+      .hero-art { min-height: 360px; } .orbit { width: 300px; height: 300px; }
+      .about-grid { grid-template-columns: 1fr; } .projects { grid-template-columns: 1fr 1fr; }
+      .contact-box { align-items: flex-start; flex-direction: column; padding: 35px; }
+      .nav-links { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 20px; background: white; border-bottom: 1px solid var(--line); flex-direction: column; gap: 17px; }
+      .nav-links.open { display: flex; } .menu-btn { display: block; }
+    }
+    @media (max-width: 540px) {
+      .container { width: min(100% - 30px, 1100px); }
+      h1 { letter-spacing: -3px; }
+      section { padding: 65px 0; }
+      .projects { grid-template-columns: 1fr; }
+      .hero-art { min-height: 320px; } .orbit { width: 265px; height: 265px; }
+      .float-tag { font-size: .85rem; } .tag-one { right: -3px; } .tag-two { left: -3px; }
+      .facts { gap: 9px; } .panel { padding: 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#home">zebo<span>.</span></a>
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Bosh sahifa</a>
+          <a href="#about">Men haqimda</a>
+          <a href="#skills">Ko‘nikmalar</a>
+          <a href="#projects">Loyihalar</a>
+          <a href="#contact">Aloqa</a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Menyuni ochish" aria-expanded="false">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="dot"></span> Salom! Portfolio sahifamga xush kelibsiz</div>
+        <h1>Men <span>Zebo</span><br>man.</h1>
+        <p>Bu mening shaxsiy portfolio saytim. Bu yerda men haqimda, qiziqishlarim, o‘rganayotgan ko‘nikmalarim va loyihalarim bilan tanishishingiz mumkin.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Loyihalarim <span>↗</span></a>
+          <a class="btn btn-light" href="#about">Men haqimda</a>
+        </div>
+      </div>
+      <div class="hero-art reveal" aria-label="Zebo uchun dekorativ profil tasviri">
+        <div class="orbit"></div>
+        <div class="profile-card">
+          <div class="avatar">Z</div>
+          <div class="card-label">Zebo · Portfolio</div>
+        </div>
+        <div class="float-tag tag-one">✦ Ijodkorlik</div>
+        <div class="float-tag tag-two">⌘ Yangi g‘oyalar</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Men haqimda</div>
+          <h2>Har kuni yangi narsalarni o‘rganaman.</h2>
+          <p>O‘zimni rivojlantirish, yangi g‘oyalarni sinab ko‘rish va chiroyli loyihalar yaratish menga yoqadi.</p>
+        </div>
+        <div class="about-grid">
+          <div class="panel reveal">
+            <h3 style="margin-bottom:12px">Salom, men Zebo!</h3>
+            <p>Men yangi bilim va tajribalar orttirishga qiziqaman. Ushbu portfolio — ishlarimni, qiziqishlarimni va kelajakdagi maqsadlarimni namoyish qilish uchun shaxsiy sahifam. Bu matnni o‘zingiz haqingizdagi ma’lumotlar bilan almashtirishingiz mumkin.</p>
+          </div>
+          <div class="panel facts reveal">
+            <div class="fact"><strong>01</strong><span>Qiziquvchanlik</span></div>
+            <div class="fact"><strong>02</strong><span>Ijodkorlik</span></div>
+            <div class="fact"><strong>03</strong><span>O‘rganish</span></div>
+            <div class="fact"><strong>04</strong><span>Rivojlanish</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" style="background:#f3f7ff">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Ko‘nikmalar</div>
+          <h2>O‘rganayotgan yo‘nalishlarim</h2>
+          <p>Quyidagi ro‘yxat namunaviy. O‘zingiz biladigan yoki o‘rganayotgan ko‘nikmalar bilan yangilang.</p>
+        </div>
+        <div class="skills reveal">
+          <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">Dizayn</span>
+          <span class="skill">Ijodiy fikrlash</span><span class="skill">Jamoada ishlash</span>
+          <span class="skill">Muammolarni hal qilish</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Portfolio</div>
+          <h2>Tanlangan loyihalar</h2>
+          <p>Bu kartochkalarni o‘z loyihalaringiz, rasmlaringiz va havolalaringiz bilan almashtiring.</p>
+        </div>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project-cover">✧</div>
+            <div class="project-body"><h3>Shaxsiy sahifa</h3><p>O‘zim haqimda ma’lumot beruvchi sodda va zamonaviy veb-sahifa.</p></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-cover">⌘</div>
+            <div class="project-body"><h3>Ijodiy loyiha</h3><p>Yangi g‘oyalar va dizayn bilan tayyorlangan kichik loyiha.</p></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-cover">✦</div>
+            <div class="project-body"><h3>Kelajakdagi loyiha</h3><p>Tez orada bu yerda yangi ishim haqida ma’lumot bo‘ladi.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><h2>Men bilan bog‘lanmoqchimisiz?</h2><p>Bu tugmaga o‘z emailingiz yoki ijtimoiy tarmoq havolangizni qo‘shing.</p></div>
+          <a class="btn" href="mailto:zebo@example.com">Email yozish <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><span>© <span id="year"></span> Zebo. Barcha huquqlar himoyalangan.</span><span>Mehr bilan yaratildi <b style="color:#1769ff">♥</b></span></div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
